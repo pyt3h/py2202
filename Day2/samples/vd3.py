@@ -9,6 +9,7 @@ Nhập vào từ bàn phím điểm đánh giá TB của một sản phẩm, in 
 '''
 
 gdp = input('GDP bình quân đầu người:')
+gdp = float(gdp)
 
 if gdp < 1026:
     print('Quốc gia thu nhập thấp')
