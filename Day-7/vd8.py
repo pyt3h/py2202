@@ -24,7 +24,13 @@ class Sale(Employee):
         self.sale_amount += amount
         
     def review_performance(self):
-        return sale_amount/kpi
+        return self.sale_amount/self.kpi
+
+sale_1 = Sale('Nguyen Van Sale', 'sale1@abc.com', '012324214', 100000000)
+sale_1.sell(500000)
+sale_1.sell(200000)
+sale_1.sell(100000)
+print(sale_1.review_performance())
 
 class Tester(Employee):
     def __init__(self, name, email, phone):
