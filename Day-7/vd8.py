@@ -27,9 +27,9 @@ class Sale(Employee):
         return self.sale_amount/self.kpi
 
 sale_1 = Sale('Nguyen Van Sale', 'sale1@abc.com', '012324214', 100000000)
-sale_1.sell(500000)
-sale_1.sell(200000)
-sale_1.sell(100000)
+sale_1.sell(50000000)
+sale_1.sell(20000000)
+sale_1.sell(10000000)
 print(sale_1.review_performance())
 
 class Tester(Employee):
