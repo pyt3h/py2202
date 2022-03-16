@@ -1,11 +1,13 @@
 class Employee:
     def __init__(self, name, email, phone):
-        ...
+        self.name = name
+        self.email = email
+        self.phone = phone
         self.late_days = 0
 
     def check_in(self, date):
         #TODO: if date.time > 8h30: self.late_days += 1
-        ...
+        pass
 
     def review_performance(self):
         score = 1.0 - self.late_days/30
@@ -22,8 +24,7 @@ class Sale(Employee):
         self.sale_amount += amount
         
     def review_performance(self):
-        #TODO: return sale_amount/kpi
-        return ...
+        return sale_amount/kpi
 
 class Tester(Employee):
     def __init__(self, name, email, phone):
