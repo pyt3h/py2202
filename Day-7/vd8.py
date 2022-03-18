@@ -12,9 +12,8 @@ class Employee:
         pass
 
     def review_performance(self):
-        score = 1.0 - self.late_days/30
+        self.score = 1.0 - self.late_days/30
         self.late_days = 0
-        return score
 
     def get_employee_tier(self):
         score = self.review_performance()
