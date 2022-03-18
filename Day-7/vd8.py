@@ -17,11 +17,11 @@ class Employee:
 
     def get_employee_tier(self):
         score = self.score
-        if score >= '90':
+        if score >= 90:
             return 'A'
-        elif score >= '80':
+        elif score >= 80:
             return 'B'
-        elif score >= '65':
+        elif score >= 65:
             return 'C'
         else:
             return 'D'
