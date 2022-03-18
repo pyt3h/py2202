@@ -69,7 +69,8 @@ class Dev(Employee):
         self.current_deadline = None
 
     def commit_task(self, date):
-        # TODO: check (date vs deadline) --> late_tasks += 1
+        if date > self.current_deadline:
+            self.late_tasks += 1
         self.total_tasks += 1
 
     def review_performance(self):
