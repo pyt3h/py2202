@@ -74,5 +74,8 @@ class Dev(Employee):
         self.total_tasks += 1
 
     def review_performance(self):
-        #TODO: return 1.0 - c * late_tasks/total_tasks
-        return ...
+        c = 2.0
+        dev_score = 1.0 - c * self.late_tasks/self.total_tasks
+        score = super().review_performance()
+        self.late_tasks = self.total_tasks = 0
+        return (0.5+0.5*score) * dev_score
