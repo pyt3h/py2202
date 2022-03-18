@@ -30,7 +30,7 @@ sale_1 = Sale('Nguyen Van Sale', 'sale1@abc.com', '012324214', 100000000)
 sale_1.sell(50000000)
 sale_1.sell(20000000)
 sale_1.sell(10000000)
-print(sale_1.review_performance())
+print(sale_1.name, ':' , sale_1.review_performance())
 
 class Tester(Employee):
     def __init__(self, name, email, phone):
@@ -45,10 +45,16 @@ class Tester(Employee):
         self.missed_bugs += 1
 
     def review_performance(self):
-        #TODO: return 1.0 - c * missed_bugs/tested_bugs
-        test_score = ...
+        c = 2.0
+        test_score = 1.0 - c * self.missed_bugs/self.tested_bugs
         score = super().review_performance()
-        return score * test_score
+        self.tested_bugs = self.missed_bugs = 0
+        return (0.5+0.5*score) * test_score
+
+tester = Tester('Nguyen Van Test', 'nvtest@abc.com', '01231235')
+for i in range(10): tester.test_bug()
+tester.bad_report_from_customer()
+print(tester.name, ':', tester.review_performance())
 
 class PM(Employee):
     def assign_task(self, dev, date):
