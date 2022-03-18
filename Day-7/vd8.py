@@ -16,7 +16,7 @@ class Employee:
         self.late_days = 0
 
     def get_employee_tier(self):
-        score = self.score
+        score = 100*self.score
         if score >= 90:
             return 'A'
         elif score >= 80:
