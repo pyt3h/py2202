@@ -61,7 +61,7 @@ class Tester(Employee):
         test_score = 1.0 - c * self.missed_bugs/self.tested_bugs
         score = super().review_performance()
         self.tested_bugs = self.missed_bugs = 0
-        return (0.5+0.5*score) * test_score
+        self.score =  (0.5+0.5*score) * test_score
 
 tester = Tester('Nguyen Van Test', 'nvtest@abc.com', '01231235')
 for i in range(10): tester.test_bug()
@@ -89,7 +89,7 @@ class Dev(Employee):
         dev_score = 1.0 - c * self.late_tasks/self.total_tasks
         score = super().review_performance()
         self.late_tasks = self.total_tasks = 0
-        return (0.5+0.5*score) * dev_score
+        self.score =  (0.5+0.5*score) * dev_score
 
 pm = PM('Nguyen Van P', 'pm@abc.com', '0232132121')
 dev = Dev('Nguyen Van Dev', 'dev@abc.com', '32321321')
