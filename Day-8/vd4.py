@@ -10,3 +10,6 @@ b64_data = b'iVBORw0KGgoAAAANSUhEUgAAAM8AAADPCAYAAABSgYVfAAABhGlDQ1BJQ0MgcHJvZml
 decoded_data = base64.b64decode(b64_data)
 print(len(decoded_data))
       
+fo = open('camel.png', 'wb')
+fo.write(decoded_data)
+fo.close()
