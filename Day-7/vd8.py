@@ -16,6 +16,17 @@ class Employee:
         self.late_days = 0
         return score
 
+    def get_employee_tier(self):
+        score = self.review_performance()
+        if score >= '90':
+            return 'A'
+        elif score >= '80':
+            return 'B'
+        elif score >= '65':
+            return 'C'
+        else:
+            return 'D'
+
 class Sale(Employee):
     def __init__(self, name, email, phone, kpi):
         super().__init__(name, email, phone)
@@ -90,4 +101,4 @@ for i in range(1,21):
     else:
         dev.commit_task(datetime(2022,3,i))
 
-print(dev.name , ':' , dev.review_performance())
+print(dev.name , ':' , dev.review_performance(), dev.get_employee_tier())
