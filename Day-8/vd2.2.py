@@ -8,5 +8,6 @@ text = '''
 
 weather_data = json.loads(text)
 
+print('Thoi gian | Nhiet do | Do Am')
 for item in weather_data:
-    print(item[...], item[...], ...)
+    print(item['time'], item['temp'], item['humidity'])
