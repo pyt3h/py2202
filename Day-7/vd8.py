@@ -87,9 +87,9 @@ class Dev(Employee):
     def review_performance(self):
         c = 2.0
         dev_score = 1.0 - c * self.late_tasks/self.total_tasks
-        score = super().review_performance()
+        super().review_performance()
         self.late_tasks = self.total_tasks = 0
-        self.score =  (0.5+0.5*score) * dev_score
+        self.score =  (0.5+0.5*self.score) * dev_score
 
 pm = PM('Nguyen Van P', 'pm@abc.com', '0232132121')
 dev = Dev('Nguyen Van Dev', 'dev@abc.com', '32321321')
