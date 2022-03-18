@@ -64,6 +64,7 @@ class PM(Employee):
 
 class Dev(Employee):
     def __init__(self, name, email, phone):
+        super().__init__(name, email, phone)
         self.total_tasks = 0
         self.late_tasks = 0
         self.current_deadline = None
@@ -79,3 +80,14 @@ class Dev(Employee):
         score = super().review_performance()
         self.late_tasks = self.total_tasks = 0
         return (0.5+0.5*score) * dev_score
+
+pm = PM('Nguyen Van P', 'pm@abc.com', '0232132121')
+dev = Dev('Nguyen Van Dev', 'dev@abc.com', '32321321')
+for i in range(1,21):
+    pm.assign_task(dev, datetime(2022,3,i))
+    if i == 10:
+        dev.commit_task(datetime(2022,3,11))
+    else:
+        dev.commit_task(datetime(2022,3,i))
+
+print(dev.name , ':' , dev.review_performance())
