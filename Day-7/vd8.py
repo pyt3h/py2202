@@ -59,9 +59,9 @@ class Tester(Employee):
     def review_performance(self):
         c = 2.0
         test_score = 1.0 - c * self.missed_bugs/self.tested_bugs
-        score = super().review_performance()
+        super().review_performance()
         self.tested_bugs = self.missed_bugs = 0
-        self.score =  (0.5+0.5*score) * test_score
+        self.score =  (0.5+0.5*self.score) * test_score
 
 tester = Tester('Nguyen Van Test', 'nvtest@abc.com', '01231235')
 for i in range(10): tester.test_bug()
