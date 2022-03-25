@@ -1,10 +1,5 @@
 import unittest
 
-#Viết hàm validate mật khẩu, yêu cầu:
-# + Độ dài tối thiểu là 6
-# + Chứa ít nhất một chữ cái
-# + Chứa ít nhất một chữ số
-
 def check_contain_char(st, c_min, c_max):
     for c in st:
         if c_min <= c <= c_max:
@@ -35,7 +30,7 @@ class TestValidatePassword(unittest.TestCase):
         self.assertFalse(validate_password('abcdef'))
 
     def test_password_ok(self):
-        self.assertTrue(validate_password('abdef1'))
+        self.assertTrue(validate_password('abdef9'))
         self.assertTrue(validate_password('12345a'))
 
 if __name__ == '__main__':
