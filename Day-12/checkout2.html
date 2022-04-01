@@ -1,10 +1,16 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+<style>
+    .cart-total td {
+        padding-top: 1.0rem;
+        padding-bottom: 1.0rem;
+    }
+</style>
 <div class="container mt-3">
     <h3>Checkout</h3>
     <div class="row mt-3">
-        <div class="col-8">
+        <div class="col-8 p-3" style="background-color: #F8F8F8;border-right: 1px solid #EEE;">
             <div class="row mt-3">
                 <div class="col-6">
                     <div class="form-group">
@@ -62,8 +68,31 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
-            Right panel
+        <div class="col-4 p-3" style="background-color: #F8F8F8;">
+            <h4>Cart Total</h4>
+            <table class="table cart-total">
+                <tbody>
+                    <tr>
+                        <td>Subtotal:</td>
+                        <td>$140.00</td>
+                    </tr>
+                    <tr>
+                        <td>Delivery:</td>
+                        <td>Free</td>
+                    </tr>
+                    <tr>
+                        <td>Total:</td>
+                        <td>$140.00</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="py-2">
+                <input type="checkbox"> Cash on delivery
+            </div>
+            <div class="py-2">
+                <input type="checkbox"> Paypal
+            </div>
+            <button class="mt-3 btn btn-primary">Checkout</button>
         </div>
     </div>
 </div>
