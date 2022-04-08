@@ -28,15 +28,14 @@
         return (`
             <tr>	
                 <td>${row.time}</td>
-                <td>${row.temp}</td>
-                <td>${row.humdity}</td>
-                <td>${row.pressure}</td>
+                <td>${row.main.temp}</td>
+                <td>${row.main.humidity}</td>
+                <td>${row.main.pressure}</td>
             </tr>`
         );
     };
 
     async function init() {
-        // TODO
         let resp = await fetch(url);
         let data = await resp.json();
         data = data.list.map(item => ({main: item.main, time: item.dt_txt}));
