@@ -1,0 +1,39 @@
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+<div class="container mt-3">
+    <h3>Thời tiết 24h tới</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Thời gian</th>
+                <th>Nhiệt độ °C</th>
+                <th>Độ ẩm (%)</th>
+                <th>Áp suất khí quyển (atm)</th>
+            </tr>
+        </thead>
+        <tbody id="table_body"></tbody>
+    </table>
+</div>
+
+<script>
+    let data = [
+        {time: '2022-03-25 15:00:00', temp: 24.5, humdity: 88, pressure: 1.008},
+        {time: '2022-03-25 18:00:00', temp: 24.17, humdity: 91, pressure: 1.007},
+        {time: '2022-03-25 21:00:00', temp: 23.12, humdity: 92, pressure: 1.009},
+        {time: '2022-03-26 00:00:00', temp: 22.26, humdity: 90, pressure: 1.012},
+    ];
+
+    function renderRow(row){
+        return (`
+            <tr>	
+                <td>${row.time}</td>
+                <td>${row.temp}</td>
+                <td>${row.humdity}</td>
+                <td>${row.pressure}</td>
+            </tr>`
+        );
+    };
+    let html = data.map(renderRow).join('');
+    document.getElementById('table_body').innerHTML = html;
+</script>
