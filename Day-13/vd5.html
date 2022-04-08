@@ -1,0 +1,15 @@
+
+<body>
+    <select onchange="selChange(this)">
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+    </select>
+  </body>
+  
+  <script>
+    function selChange(el) {
+      var options = el.options;
+      var index = el.selectedIndex;
+      alert(options[index].value);
+    }
+  </script>

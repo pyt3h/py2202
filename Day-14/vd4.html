@@ -40,6 +40,9 @@
 
 <script>
     function calc() {
-        alert('calc');   
+        let qty_1 = document.getElementById("qty_1").value;
+        let sub_1 = parseInt(qty_1) * 20000;
+        document.getElementById('sub_1').innerHTML = `${sub_1}đ`;
+        console.log("qty_1=", qty_1);
     }
 </script>

@@ -1,0 +1,12 @@
+<body>
+  <p>Đồng ý với điều khoản sử dụng: <input type="checkbox" id="agree"/></p>
+  <button onclick='readData()'>OK</button>
+</body>
+
+<script>
+  function readData() {
+    let agreeElem = document.getElementById('agree');
+    let agree = agreeElem.checked;
+    alert(agree?'Đã đồng ý': 'Chưa đồng ý');
+  }
+</script>

@@ -1,0 +1,27 @@
+<body>
+    <p>Họ tên: <input id="name"/></p>
+    <p>Giới tính:
+      <select id="gender">
+        <option value="">----</option>
+        <option value="male">Nam</option>
+        <option value="female">Nữ</option>
+      </select>
+    </p>
+    <button onclick='readData()'>OK</button>
+  </body>
+  
+  <script>
+    function readData() {
+      let nameElem = document.getElementById('name');
+      let name = nameElem.value;
+  
+      let genderElem = document.getElementById('gender');
+      let gender = genderElem.value;
+      
+      alert(`Họ tên: ${name}, giới tính: ${gender}`);
+  
+      //clear data
+      nameElem.value = '';
+      genderElem.value = '';
+    }
+  </script>
