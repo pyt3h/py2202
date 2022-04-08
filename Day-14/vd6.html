@@ -27,10 +27,10 @@
     function renderRow(row){
         return (`
             <tr>	
-                <td>${row.time}</td>
-                <td>${row.main.temp}</td>
-                <td>${row.main.humidity}</td>
-                <td>${row.main.pressure}</td>
+                <td>${row?.time ?? '-'}</td>
+                <td>${row?.main?.temp ?? '-'}</td>
+                <td>${row?.main?.humidity ?? '-'}</td>
+                <td>${row?.main?.pressure ?? '-'}</td>
             </tr>`
         );
     };
