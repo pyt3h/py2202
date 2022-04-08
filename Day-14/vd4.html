@@ -44,5 +44,12 @@
         let sub_1 = parseInt(qty_1) * 20000;
         document.getElementById('sub_1').innerHTML = `${sub_1}đ`;
         console.log("qty_1=", qty_1);
+
+        let qty_2 = document.getElementById("qty_2").value;
+        let sub_2 = parseInt(qty_2) * 25000;
+        document.getElementById('sub_2').innerHTML = `${sub_2}đ`;
+        console.log("qty_2=", qty_2);
+
+        document.getElementById('message').innerHTML = `Tổng : ${sub_1 + sub_2}đ`;
     }
 </script>
