@@ -1,0 +1,28 @@
+<meta charset="UTF-8">
+
+<table>
+    <tbody>
+        <tr>
+            <td>Số thứ nhất:</td>
+            <td> <input id="a"/> </td>
+        </tr>
+        <tr>
+            <td>Số thứ hai:</td>
+            <td> <input id="b"/> </td>
+        </tr>
+    </tbody>
+</table>
+<button onclick="add()">OK</button>
+<div id="message"></div>
+
+<script>
+    function add() {
+        //TODO:
+        let a = document.getElementById("a").value;
+        console.log("a=",a);
+        let b = document.getElementById("b").value;
+        let c = parseFloat(a) + parseFloat(b);
+        //alert('tong 2 so:' + c);
+        document.getElementById("message").innerHTML = "Tổng 2 số:" + c;
+    }
+</script>

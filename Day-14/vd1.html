@@ -1,0 +1,17 @@
+<meta charset="UTF-8">
+
+<div>
+    <label>Tên của bạn</label>: <input id="name"/>
+    <button onclick="hello()">OK</button>
+    <div id="message"></div>
+</div>
+
+<script>
+    function hello() {
+        let el = document.getElementById("name");
+        let name = el.value;
+        //alert('Xin chào ' + name);
+        let el2 = document.getElementById("message");
+        el2.innerHTML = 'Xin chào ' +  name;
+    }
+</script>
