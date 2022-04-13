@@ -84,26 +84,28 @@
       </div>
       <div class="col-9">
         <ul class="list-unstyled row">
-          <li class="list-item col-sm-4 mt-3">
-            <div class="item-container">
-              <a href="view_product.html?id=1" class="product-item">
-                <img
-                  src="https://raw.githubusercontent.com/pytutorial/themes/master/shop_themes/images/sample.jpg"
-                  class="product-image"
-                  alt=""
-                />
-                <div class="item-info">
-                  <div>
-                    <span class="product-name">Acer 001</span>
+          {#each productList as product}
+            <li class="list-item col-sm-4 mt-3">
+              <div class="item-container">
+                <a href="view_product.html?id=1" class="product-item">
+                  <img
+                    src={product.image}
+                    class="product-image"
+                    alt=""
+                  />
+                  <div class="item-info">
+                    <div>
+                      <span class="product-name">{product.name}</span>
+                    </div>
+                    <div>
+                      <span class="price-title">Giá bán :</span>
+                      <span class="price">{product.price} ₫</span>
+                    </div>
                   </div>
-                  <div>
-                    <span class="price-title">Giá bán :</span>
-                    <span class="price">6.500.000 ₫</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </li>
+                </a>
+              </div>
+            </li>
+          {/each}
         </ul>
       </div>
     </div>
