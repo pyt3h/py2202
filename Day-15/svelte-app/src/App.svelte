@@ -8,8 +8,18 @@
   });
 
   let name = '';
+  let priceRange = '';
   function search() {
     productList = allProductList.filter(p => p.name.includes(name));
+    if(priceRange == 1) {
+      productList = productList.filter(p => p.price <= 10000000);
+    }
+    if(priceRange == 2) {
+      productList = productList.filter(p => p.price >= 10000000 && p.price <= 20000000);
+    }
+    if(priceRange == 2) {
+      productList = productList.filter(p => p.price >= 20000000);
+    }
   }
 </script>
 
@@ -66,22 +76,22 @@
           <div class="price-search-info mt-3">
             <label for="priceRange"><b>Mức giá:</b></label>
             <div class="mt-2">
-              <input type="radio" name="priceRange" checked value="" />
+              <input type="radio" name="priceRange" checked value="" on:click={() => priceRange=''}/>
               <span>Tất cả</span>
             </div>
 
             <div class="mt-1">
-              <input type="radio" name="priceRange" value="1" />
+              <input type="radio" name="priceRange" value="1" on:click={() => priceRange=1}/>
               <span>Dưới 10 triệu</span>
             </div>
 
             <div class="mt-1">
-              <input type="radio" name="priceRange" value="2" />
+              <input type="radio" name="priceRange" value="2" on:click={() => priceRange=2}/>
               <span>Từ 10-20 triệu</span>
             </div>
 
             <div class="mt-1">
-              <input type="radio" name="priceRange" value="3" />
+              <input type="radio" name="priceRange" value="3" on:click={() => priceRange=3}/>
               <span>Trên 20 triệu</span>
             </div>
           </div>
