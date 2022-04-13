@@ -29,17 +29,4 @@
         {time: '2022-03-25 21:00:00', temp: 23.12, humdity: 92, pressure: 1.009},
         {time: '2022-03-26 00:00:00', temp: 22.26, humdity: 90, pressure: 1.012},
     ];
-    /*
-    function renderRow(row){
-        return (`
-            <tr>	
-                <td>${row.time}</td>
-                <td>${row.temp}</td>
-                <td>${row.humdity}</td>
-                <td>${row.pressure}</td>
-            </tr>`
-        );
-    };
-    let html = data.map(renderRow).join('');
-    document.getElementById('table_body').innerHTML = html;*/
 </script>
