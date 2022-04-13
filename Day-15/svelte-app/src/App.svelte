@@ -1,42 +1,147 @@
-
-<div class="container mt-3">
-  <h3>Thời tiết 24h tới</h3>
-  <table class="table table-bordered">
-      <thead>
-          <tr>
-              <th>Thời gian</th>
-              <th>Nhiệt độ °C</th>
-              <th>Độ ẩm (%)</th>
-              <th>Áp suất khí quyển (atm)</th>
-          </tr>
-      </thead>
-      <tbody id="table_body">
-        {#each data as row}
-          <tr>
-            <td>{row?.time ?? '-'}</td>
-            <td>{row?.main?.temp ?? '-'}</td>
-            <td>{row?.main?.humidity ?? '-'}</td>
-            <td>{row?.main?.pressure ?? '-'}</td>
-          </tr>
-        {/each}
-      </tbody>
-  </table>
-</div>
 <script>
-  let url = 'http://api.openweathermap.org/data/2.5/forecast?id=1581129&units=metric&appid=d6477696b63c2e661af64eead58c11d9&cnt=8';
-  let data = [];
-  /*   
-  fetch(url)
-      .then(resp => resp.json())
-      .then(data => console.log(data));
-  */
-
-  async function init() {
-      let resp = await fetch(url);
-      data = await resp.json();
-      data = data.list.map(item => ({main: item.main, time: item.dt_txt}));
-      console.log(data);
-  }
-  
-  init(); //main
+  let url = 'https://raw.githubusercontent.com/pytutorial/themes/master/shop_themes/product_list.json';
+  let productList = []; 
+  fetch(url).then(resp => resp.json()).then(result => {
+    console.log(result);
+    productList = result;
+  });
 </script>
+
+<div>
+  <div class="bg-primary">
+    <div class="container">
+      <nav class="navbar navbar-expand navbar-dark bg-primary p-0">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#/">Sản phẩm</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#/">Liên hệ</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container mt-5 mb-5">
+    <div class="row">
+      <div class="col-3 p-3 card">
+        <form>
+          <div class="product-search-info mt-3">
+            <label for="name" class="mb-1"><b>Tên sản phẩm:</b></label>
+            <input
+              name="name"
+              class="form-control"
+              placeholder="Nhập tên sản phẩm để tìm"
+            />
+          </div>
+
+          <div class="category-search-info mt-3">
+            <label for="categoryId"><b>Hãng sản xuất:</b></label>
+            <div class="mt-2">
+              <input type="radio" name="categoryId" checked value="" />
+              <span>Tất cả</span>
+            </div>
+            <div class="mt-1">
+              <input name="categoryId" type="radio" value="1" />
+              <span>Acer</span>
+            </div>
+            <div class="mt-1">
+              <input name="categoryId" type="radio" value="2" />
+              <span>Asus</span>
+            </div>
+            <div class="mt-1">
+              <input name="categoryId" type="radio" value="3" />
+              <span>Lenovo</span>
+            </div>
+          </div>
+
+          <div class="price-search-info mt-3">
+            <label for="priceRange"><b>Mức giá:</b></label>
+            <div class="mt-2">
+              <input type="radio" name="priceRange" checked value="" />
+              <span>Tất cả</span>
+            </div>
+
+            <div class="mt-1">
+              <input type="radio" name="priceRange" value="1" />
+              <span>Dưới 10 triệu</span>
+            </div>
+
+            <div class="mt-1">
+              <input type="radio" name="priceRange" value="2" />
+              <span>Từ 10-20 triệu</span>
+            </div>
+
+            <div class="mt-1">
+              <input type="radio" name="priceRange" value="3" />
+              <span>Trên 20 triệu</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-4 mb-4">Tìm kiếm</button>
+        </form>
+      </div>
+      <div class="col-9">
+        <ul class="list-unstyled row">
+          <li class="list-item col-sm-4 mt-3">
+            <div class="item-container">
+              <a href="view_product.html?id=1" class="product-item">
+                <img
+                  src="https://raw.githubusercontent.com/pytutorial/themes/master/shop_themes/images/sample.jpg"
+                  class="product-image"
+                  alt=""
+                />
+                <div class="item-info">
+                  <div>
+                    <span class="product-name">Acer 001</span>
+                  </div>
+                  <div>
+                    <span class="price-title">Giá bán :</span>
+                    <span class="price">6.500.000 ₫</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .product-image {
+    width: 95%;
+  }
+
+  .price-title {
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  .price {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .product-item,
+  .product-item:link,
+  .product-item:hover,
+  .product-item:visited {
+    text-decoration: none;
+    color: black;
+  }
+
+  .item-container {
+    position: relative;
+    height: 100%;
+    padding-bottom: 50px;
+  }
+
+  .item-info {
+    position: absolute;
+    bottom: 0px;
+    height: 50px;
+  }
+</style>
