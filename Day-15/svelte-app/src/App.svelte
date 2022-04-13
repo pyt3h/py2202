@@ -5,6 +5,11 @@
     console.log(result);
     productList = result;
   });
+
+  let name = '';
+  function search() {
+    alert(name);
+  }
 </script>
 
 <div>
@@ -33,6 +38,7 @@
               name="name"
               class="form-control"
               placeholder="Nhập tên sản phẩm để tìm"
+              on:change={(e) => name = e.target.value}
             />
           </div>
 
@@ -79,7 +85,7 @@
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary mt-4 mb-4">Tìm kiếm</button>
+          <button type="button" on:click={search} class="btn btn-primary mt-4 mb-4">Tìm kiếm</button>
         </form>
       </div>
       <div class="col-9">
