@@ -17,7 +17,7 @@
     if(priceRange == 2) {
       productList = productList.filter(p => p.price >= 10000000 && p.price <= 20000000);
     }
-    if(priceRange == 2) {
+    if(priceRange == 3) {
       productList = productList.filter(p => p.price >= 20000000);
     }
   }
