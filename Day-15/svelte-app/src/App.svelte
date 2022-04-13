@@ -10,7 +10,11 @@
               <th>Áp suất khí quyển (atm)</th>
           </tr>
       </thead>
-      <tbody id="table_body"></tbody>
+      <tbody id="table_body">
+        {#each data as row}
+          <tr>...</tr>
+        {/each}
+      </tbody>
   </table>
 </div>
 <script>
