@@ -1,14 +1,15 @@
 <script>
   let url = 'https://raw.githubusercontent.com/pytutorial/themes/master/shop_themes/product_list.json';
   let productList = []; 
+  let allProductList = []
   fetch(url).then(resp => resp.json()).then(result => {
     console.log(result);
-    productList = result;
+    allProductList = productList = result;
   });
 
   let name = '';
   function search() {
-    alert(name);
+    productList = allProductList.filter(p => p.name.includes(name));
   }
 </script>
 
