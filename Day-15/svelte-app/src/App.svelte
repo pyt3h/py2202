@@ -11,7 +11,12 @@
         </thead>
         <tbody id="table_body">
           {#each data as row}
-            <tr>...</tr>
+            <tr>	
+              <td>{row.time}</td>
+              <td>{row.temp}</td>
+              <td>{row.humdity}</td>
+              <td>{row.pressure}</td>
+            </tr>
           {/each}
         </tbody>
     </table>
