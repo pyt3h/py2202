@@ -19,3 +19,12 @@ class ProductCategory(models.Model):
     code = models.CharField(max_length=20)
     name = models.CharField(max_length=100)
     parent = models.ForeignKey('ProductCategory', on_delete=models.PROTECT, null=True, blank=True)
+
+class Product(models.Model):
+    ...
+
+class Customer(models.Model):
+    ...
+
+class SaleOrder(models.Model):
+    ...
