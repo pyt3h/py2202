@@ -6,6 +6,7 @@ def index(request):
     return render(request, 'index.html')
 
 #------------------------------------------------------
+from django.db.models import Q
 from django.shortcuts import HttpResponse
 from .models import *
 import json
@@ -17,7 +18,22 @@ def search_book(request):
     start_year = params.get('start_year')
     end_year = params.get('end_year')
     books = Book.objects.all()
-    #TODO: Filter books
+    
+    if keyword != '':
+        books = books.filter(
+            Q(name__icontains=keyword) |
+            Q(isbn__icontains=keyword)
+        )
+
+    if category_id:
+        books = books.filter(category__id=category_id)
+
+    if start_year:
+        books = books.filter(...)
+
+    if end_year:
+        books = books.filter(...)
+
     result = []
     for book in books:
         result.append({
