@@ -7,5 +7,6 @@ urlpatterns = [
    path('borrow-book', borrow_book),
    path('test-post', test_post),
    path('get-user-borrow-list', get_user_borrow_list),
+   path('return-book', return_book),
 ]
 
