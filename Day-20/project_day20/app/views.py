@@ -46,6 +46,7 @@ def search_book(request):
         })
     return HttpResponse(json.dumps(result))
 
+@csrf_exempt
 def borrow_book(request):
     body = request.POST
     username = body.get('username')
@@ -78,4 +79,20 @@ def borrow_book(request):
 
 @csrf_exempt
 def test_post(request):
-    return HttpResponse("Hello")
+    body = request.POST  # {'username': 'nguyenvana'}
+    username = body.get('username', '')
+    return HttpResponse(f"Hello {username}")
+
+def get_user_borrow_list(request):
+    params = request.GET
+    username = params.get('username')
+    lst = BoookBorrow.objects.filter(
+        user__username=username
+    )
+    result = []
+    for item in lst:
+        result.append({
+            'borrow_date':item.borrow_date.strftime('%d/%m/%Y %H:%M:%S'),
+            'book': item.book_copy.book.name
+        })
+    return HttpResponse(json.dumps(result))
