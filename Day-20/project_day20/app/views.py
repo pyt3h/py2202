@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 def index(request):
@@ -46,7 +46,6 @@ def search_book(request):
         })
     return HttpResponse(json.dumps(result))
 
-
 def borrow_book(request):
     body = request.POST
     username = body.get('username')
@@ -76,3 +75,7 @@ def borrow_book(request):
     book_copy.book.save()
 
     return HttpResponse(json.dumps({'success': True}))
+
+@csrf_exempt
+def test_post(request):
+    return HttpResponse("Hello")
