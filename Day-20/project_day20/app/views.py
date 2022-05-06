@@ -87,7 +87,8 @@ def get_user_borrow_list(request):
     params = request.GET
     username = params.get('username')
     lst = BoookBorrow.objects.filter(
-        user__username=username
+        user__username=username,
+        status=BoookBorrow.Status.BORROWING
     )
     result = []
     for item in lst:
