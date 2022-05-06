@@ -92,7 +92,31 @@ def get_user_borrow_list(request):
     result = []
     for item in lst:
         result.append({
+            'barcode': item.book_copy.barcode,
             'borrow_date':item.borrow_date.strftime('%d/%m/%Y %H:%M:%S'),
             'book': item.book_copy.book.name
         })
     return HttpResponse(json.dumps(result))
+
+@csrf_exempt
+def return_book(request):
+    body = request.POST
+    barcode = body.get('barcode')
+    book_borrow = BoookBorrow.objects.filter(
+        book_copy__barcode=barcode,
+        status=BoookBorrow.Status.BORROWING
+    ).first()
+
+    if not book_borrow:
+        return HttpResponse(json.dumps({'error': 'Sách đã trả'}))
+
+    book_borrow.status = BoookBorrow.Status.RETURNED
+    book_borrow.save()
+
+    book_borrow.book_copy.status = BookCopy.Status.AVAILABLE
+    book_borrow.book_copy.save()
+
+    book_borrow.book_copy.book.current_qty += 1
+    book_borrow.book_copy.book.save()
+
+    return HttpResponse(json.dumps({'success': True}))
