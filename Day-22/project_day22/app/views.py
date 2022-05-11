@@ -24,7 +24,16 @@ def create_customer(request):
 
 @api_view(['GET'])
 def search_customer(request):
-   params = request.GET
-   #TODO: GET Data from DB
+   params = request.GET # {'keyword':'Nguyen Van A'}
+   keyword = params.get('keyword', '')
+   customer_list = Customer.objects.filter(
+      fullname__icontains=keyword
+   )
    result = []
+   for customer in customer_list:
+      result.append({
+         'id': customer.id,
+         'fullname':customer.fullname,
+         'phone': customer.phone
+      })
    return Response(result)
