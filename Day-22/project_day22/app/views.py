@@ -38,3 +38,29 @@ def search_customer(request):
    #   })
    result = CustomerSerializer(customer_list,many=True).data
    return Response(result)
+
+@api_view(['POST'])
+def create_product_category(request):
+   data = request.data
+   #TODO: Validate/Save data
+   return Response({'success': True})
+
+@api_view(['GET'])
+def search_product_category(request):
+   params = request.GET
+   #TODO: Get data from db
+   result = []
+   return Response(result)
+
+@api_view(['POST'])
+def create_product(request):
+   data = request.data
+   #TODO: Validate/Save data
+   return Response({'success': True})
+
+@api_view(['GET'])
+def search_product(request):
+   params = request.GET
+   #TODO: Get data from db
+   result = []
+   return Response(result)
