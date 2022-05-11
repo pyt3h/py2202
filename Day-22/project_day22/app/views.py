@@ -29,11 +29,12 @@ def search_customer(request):
    customer_list = Customer.objects.filter(
       fullname__icontains=keyword
    )
-   result = []
-   for customer in customer_list:
-      result.append({
-         'id': customer.id,
-         'fullname':customer.fullname,
-         'phone': customer.phone
-      })
+   #result = []
+   #for customer in customer_list:
+   #   result.append({
+   #      'id': customer.id,
+   #      'fullname':customer.fullname,
+   #      'phone': customer.phone
+   #   })
+   result = CustomerSerializer(customer_list,many=True).data
    return Response(result)
