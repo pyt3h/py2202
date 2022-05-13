@@ -34,12 +34,31 @@
             .then(resp => {
                 console.log(resp.status);
                 if(resp.status != 200) {
-                    resp.json().then(err => console.log(err));
+                    resp.json().then(err => {
+                        console.log(err);
+                        if(err.fullname) {
+                            alert('Họ tên: '+ err.fullname[0])
+                        }else if(err.phone){
+                            alert('SĐT: '+ err.phone[0])
+                        }else if(err.address) {
+                            alert('Địa chỉ: '+ err.address[0])
+                        }else if(err.image) {
+                            alert('Ảnh: '+ err.image[0])
+                        }
+                    });
                 }else{
                     alert('Đăng ký thành công');
                 }
             });
-            
+        /*
+        let resp = await fetch(url, {method: "POST", body: data});
+        if(resp.status != 200) {
+            let err = await resp.json();
+            console.log(err)
+        }else{
+            alert('Đăng ký thành công');
+        }
+        */
         return false;
     }
 </script>
