@@ -11,17 +11,7 @@
                 <th style="width: 30%;">Ảnh</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>Nguyễn Văn A</td>
-                <td>032132132</td>
-                <td>Hà Nội</td>
-                <td>
-                    <img style="width: 95%;" 
-                        src="http://127.0.0.1:8000/static/images/user_image.jpg" alt=""/>
-                </td>
-            </tr>
-        </tbody>
+        <tbody id="customer_list"></tbody>
     </table>
 </div>
 
@@ -41,12 +31,13 @@
             </tr>`
         )
     }
-
     async function searchCustomer(keyword) {
         let url = baseUrl + '/api/search-customer?keyword=' + (keyword ?? '');
         let resp = await fetch(url);
         customerList = await resp.json();
-        console.log(customerList);
+        //console.log(customerList);
+        let html = customerList.map(renderRow).join("");
+        //console.log(html);
     }
     searchCustomer();
 </script>
