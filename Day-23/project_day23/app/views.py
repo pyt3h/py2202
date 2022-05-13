@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -20,3 +21,11 @@ def search_customer(request):
    customer_list = Customer.objects.filter(fullname__icontains=keyword)
    result = CustomerSerializer(customer_list, many=True).data
    return Response(result)
+
+@api_view(['POST'])
+def create_customer(request):
+   serializer = CustomerSerializer(data=request.data)
+   if not serializer.is_valid():
+      return Response(serializer.errors,status=404)
+   serializer.save()
+   return HttpResponse({'success':True})
