@@ -28,6 +28,20 @@
 <script>
     let baseUrl = 'http://127.0.0.1:8000';
     let customerList = [];
+
+    function renderRow(customer){
+        return (
+            `<tr>
+                <td>${customer.fullname}</td>
+                <td>${customer.phone}</td>
+                <td>${customer.address}</td>
+                <td>
+                    ${customer.image? `<img style="width: 95%;" src="${baseUrl}${customer.image}" alt=""/>` : ""}
+                </td>
+            </tr>`
+        )
+    }
+
     async function searchCustomer(keyword) {
         let url = baseUrl + '/api/search-customer?keyword=' + (keyword ?? '');
         let resp = await fetch(url);
