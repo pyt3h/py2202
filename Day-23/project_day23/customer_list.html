@@ -24,3 +24,14 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    let baseUrl = 'http://127.0.0.1:8000';
+    let customerList = [];
+    async function searchCustomer(keyword) {
+        let url = baseUrl + '/api/search-customer?keyword=' + (keyword ?? '');
+        let resp = await fetch(url);
+        customerList = await resp.json();
+        console.log(customerList);
+    }
+</script>
