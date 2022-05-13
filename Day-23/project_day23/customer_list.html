@@ -38,6 +38,7 @@
         //console.log(customerList);
         let html = customerList.map(renderRow).join("");
         //console.log(html);
+        document.getElementById("customer_list").innerHTML = html;
     }
     searchCustomer();
 </script>
