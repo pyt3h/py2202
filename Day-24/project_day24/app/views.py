@@ -29,3 +29,26 @@ def get_customer_by_phone(request, phone):
    else:
       result = CustomerSerializer(customer).data
       return Response(result)
+
+#==================== Product =================================
+class ProductSerializer(ModelSerializer):
+   class Meta:
+      model = Product
+      fields = '__all__'
+
+@api_view(['GET'])
+def search_product(request):
+   params = request.GET
+   keyword = params.get('keyword', '')
+   product_list = Product.objects.filter(code__icontains=keyword)
+   result = ProductSerializer(product_list, many=True).data
+   return Response(result)
+
+@api_view(['GET'])
+def get_product_by_code(request, code):
+   product = Product.objects.filter(code=code).first()
+   if not product:
+      return Response({})
+   else:
+      result = ProductSerializer(product).data
+      return Response(result)
