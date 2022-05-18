@@ -1,7 +1,17 @@
 import json
 from django.shortcuts import render, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
 
-# Create your views here.
+@csrf_exempt
+@require_http_methods(["POST"])
+def save_data(request):
+    data = request.POST
+    print('data=', data)
+    a = float(data.get('a', 0))
+    b = float(data.get('b', 0))
+    c = a + b
+    return HttpResponse(f'Tổng 2 số : {c}')
 
 def index(request):
     return render(request, 'index.html')

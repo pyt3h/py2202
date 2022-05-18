@@ -18,7 +18,8 @@ class CustomerSerializer(ModelSerializer):
 def search_customer(request):
    params = request.GET
    keyword = params.get('keyword', '')
-   customer_list = Customer.objects.filter(fullname__icontains=keyword)
+   customer_list = Customer.objects.filter(
+                     fullname__icontains=keyword).order_by("-id")
    result = CustomerSerializer(customer_list, many=True).data
    return Response(result)
 
