@@ -1,3 +1,4 @@
+from datetime import datetime
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -78,6 +79,25 @@ def save_cart(request):
       if int(qty) <= 0:
          return Response({'error': f'Số lượng không hợp lệ: {qty}'}, 
                         status=500)
-   #TODO: Save data to db
+   
+   cart = Cart.objects.create(
+      customer=Customer(pk=customer_id),
+      date=datetime.now(),
+      total=0
+   )
+   for item in items:
+      qty = int(item["qty"])
+      product_id = item["product_id"]
+      product = Product.objects.get(pk=product_id)
+      cart_item = CartItem.objects.create(
+         cart=cart,
+         product=product,
+         price_unit=product.price,
+         qty=qty,
+         sub_total=qty*product.price
+      )
+      cart.total += cart_item.sub_total
+   
+   cart.save()       # save total
 
    return Response({'success': True})
