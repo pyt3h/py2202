@@ -1,3 +1,15 @@
+<script>
+  let customer = {};
+  let baseUrl = "http://127.0.0.1:8000/api";
+  function getCustomerInfo(e) {
+    //alert(e.target.value);
+    let url = baseUrl + '/get-customer-by-phone/' + e.target.value;
+    console.log('url=', url);
+    fetch(url).then(resp => resp.json()).then(result => customer = result);
+    //let resp = await fetch(url);
+    //customer = await resp.json();
+  }
+</script>
 <main>
   <div class="container mt-3">
     <h4>Thông tin khách hàng</h4>
@@ -6,11 +18,11 @@
       <tbody>
         <tr>
           <th style="width:30%">Số điện thoại:</th>
-          <td><input class="form-control"/></td>
+          <td><input on:change={getCustomerInfo} class="form-control"/></td>
         </tr>
         <tr>
           <th>Họ tên khách hàng:</th>
-          <td></td>
+          <td>{customer.fullname ?? ""}</td>
         </tr>
         <tr>
           <th>Địa chỉ:</th>
