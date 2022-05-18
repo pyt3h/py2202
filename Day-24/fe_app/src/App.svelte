@@ -26,7 +26,7 @@
         </tr>
         <tr>
           <th>Địa chỉ:</th>
-          <td></td>
+          <td>{customer.address ?? ""}</td>
         </tr>
       </tbody>
     </table>
