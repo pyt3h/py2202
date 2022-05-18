@@ -20,3 +20,12 @@ def search_customer(request):
    customer_list = Customer.objects.filter(phone__icontains=keyword)
    result = CustomerSerializer(customer_list, many=True).data
    return Response(result)
+
+@api_view(['GET'])
+def get_customer_by_phone(request, phone):
+   customer = Customer.objects.filter(phone=phone).first()
+   if not customer:
+      return Response({})
+   else:
+      result = CustomerSerializer(customer).data
+      return Response(result)
