@@ -52,3 +52,32 @@ def get_product_by_code(request, code):
    else:
       result = ProductSerializer(product).data
       return Response(result)
+
+#====================== Cart ==============================
+@api_view(['POST'])
+def save_cart(request):
+   data = request.data
+   customer_id = data.get("customer_id")
+   
+   if customer_id and not Customer.objects.filter(pk=customer_id).exists():
+      return Response({'error': 'Khách hàng không tồn tại'}, 
+                     status=404)
+
+   items = data.get("items", [])
+   for item in items:
+      qty = item.get("qty", 0)
+      product_id = item.get("product_id")
+      if not product_id:
+         return Response({'error': 'Thiếu sản phẩm trong danh mục hàng'}, 
+                           status=500)
+
+      if not Product.objects.filter(pk=product_id).exists():
+         return Response({'error': f'Sản phẩm không tồn tại: {product_id}'}, 
+                           status=404)
+
+      if int(qty) <= 0:
+         return Response({'error': f'Số lượng không hợp lệ: {qty}'}, 
+                        status=500)
+   #TODO: Save data to db
+
+   return Response({'success': True})
