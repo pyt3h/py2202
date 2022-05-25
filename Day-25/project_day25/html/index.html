@@ -1,0 +1,20 @@
+<script>
+    if(!localStorage.getItem('token')) {
+        location.href = 'login.html';
+    }
+    async function getData() {
+        let url = 'http://127.0.0.1:8000/api/hello';
+
+        let options = {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem('token')
+            }
+        };
+        let resp = await fetch(url, options);
+        let result = await resp.json();
+        alert(result.message);
+    }
+    getData();
+</script>
+
+<div id="content"></div>
