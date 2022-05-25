@@ -8,6 +8,11 @@
     cartItemList = [...cartItemList, {qty:1}];
   }
 
+  function deleteCartItem(index) {
+    cartItemList.splice(index, 1);
+    cartItemList = [...cartItemList];
+  }
+
   function getCustomerInfo(e) {
     //alert(e.target.value);
     let url = baseUrl + '/get-customer-by-phone/' + e.target.value;
@@ -15,6 +20,28 @@
     fetch(url).then(resp => resp.json()).then(result => customer = result);
     //let resp = await fetch(url);
     //customer = await resp.json();
+  }
+
+  async function getProductInfo(index, e) {
+    let code = e.target.value;
+    //alert(code);
+    let url = baseUrl + "/get-product-by-code/" + code;
+    let resp = await fetch(url);
+    let product = await resp.json();
+    let cartItem = cartItemList[index];
+    cartItem.product_id = product.id;
+    cartItem.product_code = product.code;
+    cartItem.product_name = product.name;
+    cartItem.qty = 1;
+    cartItem.price = cartItem.sub_total = product.price;
+    cartItemList = [...cartItemList];
+  }
+
+  function updateCartItemQty(index, e) {
+    let cartItem = cartItemList[index];
+    cartItem.qty = e.target.value;
+    cartItem.sub_total = cartItem.qty * cartItem.price;
+    cartItemList = [...cartItemList];
   }
 </script>
 <main>
@@ -53,17 +80,20 @@
         </tr>
       </thead>
       <tbody>
-        {#each cartItemList as cartItem}
+        {#each cartItemList as cartItem, index}
           <tr>
             <td>
-              <input class="form-control"/>
+              <input class="form-control" on:change={(e)=>getProductInfo(index,e)}/>
             </td>
-            <td>Mỳ hảo hảo chua cay</td>
-            <td>3500</td>
-            <td><input class="form-control" type="number" min="1"/></td>
-            <td>3500</td>
+            <td>{cartItem.product_name ?? ''}</td>
+            <td>{cartItem.price ?? ''}</td>
             <td>
-              <button class="btn btn-danger btn-sm">Xoá</button>
+              <input class="form-control" type="number" min="1" value={cartItem.qty}
+                on:change={(e)=> updateCartItemQty(index, e)}/>
+            </td>
+            <td>{cartItem.sub_total ?? ''}</td>
+            <td>
+              <button on:click={() => deleteCartItem(index)} class="btn btn-danger btn-sm">Xoá</button>
             </td>
           </tr>
         {/each}
