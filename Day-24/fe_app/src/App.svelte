@@ -43,6 +43,28 @@
     cartItem.sub_total = cartItem.qty * cartItem.price;
     cartItemList = [...cartItemList];
   }
+
+  async function saveCart() {
+    let data = {
+      customer_id: customer.id,
+      items: cartItemList.map(item => ({product_id: item.product_id, qty: item.qty}))
+    };
+    //alert(JSON.stringify(data));
+    let url = baseUrl + '/save-cart';
+    let options = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {'Content-Type': 'application/json'}
+    };
+    let resp = await fetch(url, options);
+    if(resp.status != 200) {
+      let result = await resp.json();
+      console.log(result);
+      alert('Lỗi xảy ra:'+ result.error);
+    }else{
+      alert('Lưu thông tin thành công')
+    }
+  }
 </script>
 <main>
   <div class="container mt-3">
@@ -100,7 +122,7 @@
       </tbody>
     </table>
     <div>Tổng số tiền: 12500đ</div>
-    <button class="btn btn-primary mt-3">Lưu lại</button>
+    <button on:click={saveCart} class="btn btn-primary mt-3">Lưu lại</button>
   </div>
   
 </main>
