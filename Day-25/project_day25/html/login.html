@@ -1,0 +1,27 @@
+<script>
+    function logIn() {
+        let url = 'http://127.0.0.1:8000/api/token';
+        let data = new FormData(document.getElementById('fmt'));
+        let options = {method: 'POST', body: data};
+        fetch(url, options).then(resp => resp.json())
+            .then(result => {
+                alert(result.access);
+            })
+        return false;
+    }
+</script>
+<form id="fmt" onsubmit="return logIn()">
+    <table>
+        <tbody>
+            <tr>
+                <td>Username:</td>
+                <td><input name="username"></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="password"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button>Log in</button>
+</form>
