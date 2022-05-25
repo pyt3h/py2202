@@ -5,7 +5,13 @@
         let options = {method: 'POST', body: data};
         fetch(url, options).then(resp => resp.json())
             .then(result => {
-                alert(result.access);
+                //alert(result.access);
+                if(!result.access) {
+                    alert('Wrong username/password');
+                }else {
+                    localStorage.setItem('token', result.access);
+                    location.href = 'index.html';
+                }
             })
         return false;
     }
