@@ -12,9 +12,14 @@
         };
         let resp = await fetch(url, options);
         let result = await resp.json();
-        alert(result.message);
+        document.getElementById('content').innerHTML = result.message;
+    }
+    function logOut(){
+        localStorage.removeItem('token');
+        location.href = 'login.html';
     }
     getData();
 </script>
 
 <div id="content"></div>
+<button onclick="logOut()">Log out</button>
